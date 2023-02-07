@@ -9,9 +9,10 @@
 
 <h2>Doctores</h2>
 
+<div class="form-group">
 
-@Html.ActionLink("Nuevo doctor", "Crear", "Doctor", null, new { @class = "btn btn-success rounded" })
-
+    @Html.ActionLink("Nuevo doctor", "Crear", "Doctor", null, new { @class = "btn btn-success rounded" })
+</div>
 <br />
 
 <table class="table table-bordered mt-5">
@@ -36,8 +37,8 @@
                 <td>
                     @Html.ActionLink("Editar", "Editar", "Doctor", new { idDoctor = doctor.Id }, null)
                     |
-                               
-                    <a  onclick="eliminarDoctor(this)" href="#@doctor.Id"> Borrar</a>|
+
+                    <a onclick="eliminarDoctor(this)" href="#@doctor.Id"> Borrar</a>|
                     @Html.ActionLink("Detalle", "DetalleDoctor", "Doctor", new { idDoctor = doctor.Id }, null)
                 </td>
             </tr>

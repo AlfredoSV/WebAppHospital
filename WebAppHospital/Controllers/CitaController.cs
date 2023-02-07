@@ -24,6 +24,8 @@ namespace WebAppHospital.Controllers
         private readonly ServicioPaciente _servicioPaciente;
         private readonly ServicioDoctor _servicioDoctor;
 
+        private readonly log4net.ILog _logger = log4net.LogManager.GetLogger(typeof(CitaController));
+
 
         public CitaController()
         {
@@ -161,7 +163,7 @@ namespace WebAppHospital.Controllers
             }
             catch (Exception e)
             {
-
+                _logger.Error("Método - Crear - Controller - Cita", e);
                 return RedirectToAction("Error", "Login");
 
             }
@@ -210,7 +212,7 @@ namespace WebAppHospital.Controllers
             }
             catch (Exception e)
             {
-
+                _logger.Error("Método - CrearNuevo - Controller - Cita", e);
                 return RedirectToAction("Error", "Login");
 
             }

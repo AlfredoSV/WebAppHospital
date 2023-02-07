@@ -8,10 +8,11 @@
 
 
 <h2>Citas</h2>
+<div class="form-group">
 
 
-@Html.ActionLink("Nueva cita", "Crear", "Cita", null, new { @class = "btn btn-success rounded" })
-
+    @Html.ActionLink("Nueva cita", "Crear", "Cita", null, new { @class = "btn btn-success rounded" })
+</div>
 <br />
 
 <table class="table table-bordered mt-5">
@@ -28,19 +29,19 @@
 
         @foreach (var cita in Model.Citas)
         {
-        <tr>
-            <th scope="row">@cita.Id</th>
-            <td>@cita.NombrePaciente</td>
-            <td>@cita.NombreDoctor</td>
-            <td>@cita.FechaCita</td>
-            <td>
-                @Html.ActionLink("Editar", "Editar", "Cita", new { idCita = cita.Id }, null)
-                |
+            <tr>
+                <th scope="row">@cita.Id</th>
+                <td>@cita.NombrePaciente</td>
+                <td>@cita.NombreDoctor</td>
+                <td>@cita.FechaCita</td>
+                <td>
+                    @Html.ActionLink("Editar", "Editar", "Cita", new { idCita = cita.Id }, null)
+                    |
 
-                <a onclick="eliminarCita(this)" href="#@cita.Id"> Borrar</a>|
-                @Html.ActionLink("Detalle", "DetalleCita", "Cita", new { idCita = cita.Id }, null)
-            </td>
-        </tr>
+                    <a onclick="eliminarCita(this)" href="#@cita.Id"> Borrar</a>|
+                    @Html.ActionLink("Detalle", "DetalleCita", "Cita", new { idCita = cita.Id }, null)
+                </td>
+            </tr>
         }
 
 

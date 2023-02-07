@@ -20,6 +20,7 @@ namespace WebAppHospital.Controllers.LoginN
 
         private readonly ServicioUsuario _servicioUsuario;
         private readonly string _connectionString;
+        private readonly log4net.ILog _logger = log4net.LogManager.GetLogger(typeof(LoginController));
 
         public LoginController()
         {
@@ -60,6 +61,7 @@ namespace WebAppHospital.Controllers.LoginN
 
             try
             {
+               
 
                 if (!ModelState.IsValid)
                 {
@@ -87,7 +89,7 @@ namespace WebAppHospital.Controllers.LoginN
             }
             catch (Exception e)
             {
-
+                _logger.Error("Método - Ingresar - Controller - Login", e);
                 return RedirectToAction("Error", "Login");
 
             }
@@ -106,7 +108,7 @@ namespace WebAppHospital.Controllers.LoginN
 
             try
             {
-
+                
                 if (!ModelState.IsValid)
                 {
                     return View("Registro");
@@ -133,7 +135,7 @@ namespace WebAppHospital.Controllers.LoginN
             }
             catch (Exception e)
             {
-
+                _logger.Error("Método - Registrar - Controller - Login", e);
                 return RedirectToAction("Error", "Login");
 
             }
