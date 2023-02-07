@@ -1,0 +1,113 @@
+﻿
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@model WebAppHospital.Models.CitaModel
+
+<div class="container">
+
+        <div class="row formLogin">
+            <h2>Detalle - Cita</h2>
+
+            <div class="col">
+
+
+                <div class="form-group">
+
+                    <label for="IdPaciente"></label>
+
+
+                    @Html.LabelFor(m => m.NombrePaciente);
+
+                    @Html.TextBoxFor(m => m.NombrePaciente, new { disabled = "disabled", @class = "form-control form-control-sm" })
+
+                    @Html.ValidationMessageFor(m => m.NombrePaciente, null, new { @class = "text-danger" })
+                </div>
+
+                <div class="form-group">
+
+                    <label for="IdDoctor"></label>
+
+
+                    @Html.LabelFor(m => m.NombrePaciente);
+
+                    @Html.TextBoxFor(m => m.NombreDoctor, new { disabled = "disabled", @class = "form-control form-control-sm" })
+
+                    @Html.ValidationMessageFor(m => m.NombreDoctor, null, new { @class = "text-danger" })
+                </div>
+                <div class="form-group">
+
+                    @Html.LabelFor(m => m.FechaCita);
+
+                    @Html.TextBoxFor(m => m.FechaCita, new { disabled = "disabled",@class = "form-control form-control-sm" })
+
+                    @Html.ValidationMessageFor(m => m.FechaCita, null, new { @class = "text-danger" })
+
+                </div>
+                <div class="form-group">
+
+                    <label for="IdDoctor"></label>
+
+                    @Html.LabelFor(m => m.Horario);
+
+                    @Html.TextBoxFor(m => m.Horario, new { disabled = "disabled", @class = "form-control form-control-sm" })
+
+                    @Html.ValidationMessageFor(m => m.Horario, null, new { @class = "text-danger" })
+                </div>
+
+
+
+                <div class="form-group">
+
+                    @Html.LabelFor(m => m.Comentarios);
+
+                    @Html.TextAreaFor(m => m.Comentarios, new { disabled = "disabled", @class = "form-control form-control-sm" })
+
+                    @Html.ValidationMessageFor(m => m.Comentarios, null, new { @class = "text-danger" })
+
+                </div>
+
+
+                <div class="form-group">
+
+                    @if (TempData["RegistroCitaEx"] != null)
+                    {
+                        if ((bool)TempData["RegistroCitaEx"])
+                        {
+                            <h5 class="text-success">
+                                El registro de la cita fue éxitoso.
+                            </h5>
+                        }
+
+                    }
+
+                    @Html.ActionLink("Consultar citas", "Index", "Cita")
+
+                    @if (TempData["ErrorCo"] != null)
+                    {
+                        <h5 class="text-danger">
+                            @TempData["ErrorCo"]
+                        </h5>
+                    }
+
+
+
+                </div>
+
+                
+            </div>
+
+        </div>
+    
+
+
+
+</div>
+
+
+
+
+
+

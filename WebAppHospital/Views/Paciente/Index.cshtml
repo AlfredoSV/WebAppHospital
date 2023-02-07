@@ -1,0 +1,124 @@
+﻿@{
+
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+}
+
+@model WebAppHospital.Models.IndexModelPaciente
+
+
+<h2>Pacientes</h2>
+
+
+@Html.ActionLink("Nuevo paciente", "Crear", "paciente", null, new { @class = "btn btn-success rounded" })
+
+<br />
+
+<table class="table table-bordered mt-5">
+    <thead>
+        <tr>
+            <th scope="col">Id</th>
+            <th scope="col">Nombre</th>
+            <th scope="col">Peso</th>
+            <th scope="col">Edad</th>
+            <th scope="col">Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+
+        @foreach (var paciente in Model.Pacientes)
+        {
+            <tr>
+                <th scope="row">@paciente.Id</th>
+                <td>@paciente.Nombre</td>
+                <td>@paciente.Peso</td>
+                <td>@paciente.Edad</td>
+                <td>
+                    @Html.ActionLink("Editar", "Editar", "Paciente", new { idpaciente = paciente.Id}, null)
+                    |
+
+                    <a onclick="eliminarPaciente(this)" href="#@paciente.Id"> Borrar</a>|
+                    @Html.ActionLink("Detalle", "DetallePaciente", "Paciente", new { idpaciente = paciente.Id }, null)
+                </td>
+            </tr>
+        }
+
+
+    </tbody>
+</table>
+
+
+<nav>
+    <ul class="pagination">
+
+        @if (Model.Pg.Anterior)
+        {
+            <li class="page-item">
+
+
+                @Html.ActionLink("<<", "Index", "paciente", new { pagina = (Model.Pg.Pagina_Actual - 1) }, null)
+            </li>
+        }
+        else
+        {
+            <li class="page-item disabled">
+                <a class="page-link" href="#" aria-label="Previous">
+                    <span aria-hidden="true"><<</span>
+                    <span class="sr-only">Anterior</span>
+                </a>
+            </li>
+
+        }
+
+
+        @for (int i = Model.Pg.Min_Bloque; i <= (Model.Pg.Total_Paginas <= Model.Pg.Max_Bloque ? Model.Pg.Total_Paginas : Model.Pg.Max_Bloque); i++)
+        {
+            if (i == Model.Pg.Pagina_Actual)
+            {
+                <li class="page-item active">
+
+                    @Html.ActionLink(i.ToString(), "Index", "paciente", new { pagina = i }, new { @class = "page-link" })
+
+                </li>
+            }
+            else
+            {
+
+                <li class="page-item">
+
+                    @Html.ActionLink(i.ToString(), "Index", "paciente", new { pagina = i }, new { @class = "page-link" })
+
+                </li>
+            }
+
+
+        }
+
+
+
+        @if (Model.Pg.Siguiente)
+        {
+
+
+            <li class="page-item">
+
+
+                @Html.ActionLink(">>", "Index", "paciente", new { pagina = (Model.Pg.Pagina_Actual + 1) }, null)
+            </li>
+        }
+        else
+        {
+            <li class="page-item disabled">
+                <a class="page-link" href="#" aria-label="Next">
+                    <span aria-hidden="true">>></span>
+                    <span class="sr-only">Siguiente</span>
+                </a>
+            </li>
+        }
+
+
+
+
+    </ul>
+</nav>
+

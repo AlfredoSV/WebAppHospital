@@ -1,0 +1,87 @@
+﻿
+@{
+    ViewBag.Title = "Detalle";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@model WebAppHospital.Models.DoctorModel
+
+<div class="container">
+
+
+    <div class="row formLogin">
+        <h2>Detalle - Doctor</h2>
+
+        <div class="col">
+
+
+            <div class="form-group">
+
+                @Html.TextBoxFor(m => m.Id, new { disabled = "disabled", @class = "form-control form-control-sm" })
+
+
+            </div>
+
+            <div class="form-group">
+
+                @Html.LabelFor(m => m.Nombre)
+
+                @Html.TextBoxFor(m => m.Nombre, new { disabled = "disabled", @class = "form-control form-control-sm" })
+
+
+
+            </div>
+
+
+
+            <div class="form-group">
+                @Html.LabelFor(m => m.ApellidoPaterno)
+
+                @Html.TextBoxFor(m => m.ApellidoPaterno, new { disabled = "disabled", @class = "form-control form-control-sm" })
+
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(m => m.ApellidoMaterno)
+
+                @Html.TextBoxFor(m => m.ApellidoMaterno, new { disabled = "disabled", @class = "form-control form-control-sm" })
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(m => m.Departamento)
+
+                @Html.TextBoxFor(m => m.Departamento, new { disabled = "disabled", @class = "form-control form-control-sm" })
+
+                <div class="form-group">
+                    @Html.LabelFor(m => m.Especialidad)
+
+                    @Html.TextBoxFor(m => m.Especialidad, new { disabled = "disabled", @class = "form-control form-control-sm" })
+                </div>
+
+
+                <div class="form-group">
+                    @Html.LabelFor(m => m.NumCedula)
+
+                    @Html.TextBoxFor(m => m.NumCedula, new { disabled = "disabled", @class = "form-control form-control-sm" })
+                </div>
+                <div class="form-group">
+
+
+
+                    @Html.ActionLink("Consultar doctores", "Index", "Doctor")
+
+
+
+
+
+                </div>
+
+
+            </div>
+
+        </div>
+
+
+    </div>
+
+</div>

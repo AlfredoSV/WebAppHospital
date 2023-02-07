@@ -1,0 +1,98 @@
+﻿@{
+    Layout = "~/Views/Shared/_LayoutLogin.cshtml";
+}
+
+@model WebAppHospital.Models.LoginRegistro
+
+
+<div class="container">
+
+    @using (Html.BeginForm("RegistrarNuevo", "Login", FormMethod.Post))
+    {
+        @Html.AntiForgeryToken()
+        <div class="row formLogin">
+            <h2>Registro</h2>
+
+            <div class="col">
+
+
+                <div class="form-group">
+
+                    @Html.LabelFor(m => m.Usuario)
+
+                    @Html.TextBoxFor(m => m.Usuario, new { @class = "form-control form-control-sm" })
+
+                    @Html.ValidationMessageFor(m => m.Usuario, null, new { @class = "text-danger" })
+
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(m => m.Nombre)
+
+                    @Html.TextBoxFor(m => m.Nombre, new { @class = "form-control form-control-sm" })
+
+                    @Html.ValidationMessageFor(m => m.Nombre, null, new { @class = "text-danger" })
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(m => m.ApellidoPaterno)
+
+                    @Html.TextBoxFor(m => m.ApellidoPaterno, new { @class = "form-control form-control-sm" })
+
+                    @Html.ValidationMessageFor(m => m.ApellidoPaterno, null, new { @class = "text-danger" })
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(m => m.ApellidoMaterno)
+
+                    @Html.TextBoxFor(m => m.ApellidoMaterno, new { @class = "form-control form-control-sm" })
+
+                    @Html.ValidationMessageFor(m => m.ApellidoMaterno, null, new { @class = "text-danger" })
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(m => m.Contrasenia)
+
+                    @Html.TextBoxFor(m => m.Contrasenia, new { @class = "form-control form-control-sm", @type = "password" })
+
+                    @Html.ValidationMessageFor(m => m.Contrasenia, null, new { @class = "text-danger" })
+                </div>
+                <div class="form-group">
+
+                    @if (TempData["RegistroEx"] != null)
+                    {
+                        if ((bool)TempData["RegistroEx"])
+                        {
+                            <h5 class="text-success">
+                                Tu registro fue éxítoso, puedes iniciar sesión a través de este
+                                @Html.ActionLink("link", "Index", "Login")
+                            </h5>
+                        }
+
+                    }
+                    else
+                    {
+                        @Html.ActionLink("Iniciar sesión", "Index", "Login")
+                    }
+
+                    @if (TempData["ErrorCo"] != null)
+                    {
+                        <h5 class="text-danger">
+                            @TempData["ErrorCo"]
+                        </h5>
+                    }
+
+
+
+                </div>
+
+                <input type="submit" value="Registrar" class="btn btn-info rounded" />
+
+            </div>
+
+        </div>
+    }
+
+
+
+</div>

@@ -1,0 +1,121 @@
+﻿
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@model WebAppHospital.Models.CitaModel
+
+<div class="container">
+
+    @using (Html.BeginForm("CrearNuevo", "Cita", FormMethod.Post))
+    {
+        @Html.AntiForgeryToken()
+        <div class="row formLogin">
+            <h2>Registro - Doctor</h2>
+
+            <div class="col">
+
+
+                <div class="form-group">
+
+                    <label for="IdPaciente"></label>
+
+
+                    @Html.DropDownList("IdPaciente",
+                    new SelectList(ViewBag.Pacientes, "Id", "Nombre"),
+                    null,
+                    new { @class = "form-control form-control-sm" })
+                </div>
+
+                <div class="form-group">
+
+                    <label for="IdDoctor"></label>
+
+
+                    @Html.DropDownList("IdDoctor",
+                    new SelectList(ViewBag.Doctores, "Id", "Nombre"),
+                    null,
+                    new { @class = "form-control form-control-sm" })
+                </div>
+                <div class="form-group">
+
+                    @Html.LabelFor(m => m.FechaCita);
+
+                    @Html.TextBoxFor(m => m.FechaCita, new { type = "date", @class = "form-control form-control-sm" })
+
+                    @Html.ValidationMessageFor(m => m.FechaCita, null, new { @class = "text-danger" })
+
+                </div>
+                <div class="form-group">
+
+                    <label for="IdDoctor"></label>
+
+
+                    @Html.DropDownList("Horario",
+                    new List<SelectListItem>
+{
+      new SelectListItem { Text = "9-10", Value = "1", Selected=true},
+      new SelectListItem { Text = "10-11", Value = "2"},
+      new SelectListItem { Text = "11-12", Value = "3"},
+          new SelectListItem { Text = "12-13", Value = "4"}, new SelectListItem { Text = "13-14", Value = "5"}, new SelectListItem { Text = "16-17", Value = "6"},
+           new SelectListItem { Text = "17-18", Value = "3"}, new SelectListItem { Text = "18-19", Value = "3"},
+}, "Selecciona un horario",
+                    new { @class = "form-control form-control-sm" })
+                </div>
+
+
+
+                <div class="form-group">
+
+                    @Html.LabelFor(m => m.Comentarios);
+
+                    @Html.TextAreaFor(m => m.Comentarios, new { @class = "form-control form-control-sm" })
+
+                    @Html.ValidationMessageFor(m => m.Comentarios, null, new { @class = "text-danger" })
+
+                </div>
+
+
+                <div class="form-group">
+
+                    @if (TempData["RegistroCitaEx"] != null)
+                    {
+                        if ((bool)TempData["RegistroCitaEx"])
+                        {
+                            <h5 class="text-success">
+                                El registro de la cita fue éxitoso.
+                            </h5>
+                        }
+
+                    }
+
+                    @Html.ActionLink("Consultar citas", "Index", "Cita")
+
+                    @if (TempData["ErrorCo"] != null)
+                    {
+                        <h5 class="text-danger">
+                            @TempData["ErrorCo"]
+                        </h5>
+                    }
+
+
+
+                </div>
+
+                <input type="submit" value="Registrar" class="btn btn-info rounded" />
+
+            </div>
+
+        </div>
+    }
+
+
+
+</div>
+
+
+
+
+
+

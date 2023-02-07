@@ -1,0 +1,126 @@
+﻿
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@model WebAppHospital.Models.PacienteModel
+
+<div class="container">
+
+    @using (Html.BeginForm("EditarPaciente", "Paciente", FormMethod.Post))
+    {
+        @Html.AntiForgeryToken()
+        <div class="row formLogin">
+            <h2>Editar - Paciente</h2>
+
+            <div class="col">
+                <div class="form-group">
+
+                    @Html.TextBoxFor(m => m.Id, new { style = "display: none;", @class = "form-control form-control-sm" })
+
+                </div>
+
+                <div class="form-group">
+
+                    @Html.LabelFor(m => m.Nombre)
+
+                    @Html.TextBoxFor(m => m.Nombre, new { @class = "form-control form-control-sm" })
+
+                    @Html.ValidationMessageFor(m => m.Nombre, null, new { @class = "text-danger" })
+
+                </div>
+
+
+
+                <div class="form-group">
+                    @Html.LabelFor(m => m.ApellidoPaterno)
+
+                    @Html.TextBoxFor(m => m.ApellidoPaterno, new { @class = "form-control form-control-sm" })
+
+                    @Html.ValidationMessageFor(m => m.ApellidoPaterno, null, new { @class = "text-danger" })
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(m => m.ApellidoMaterno)
+
+                    @Html.TextBoxFor(m => m.ApellidoMaterno, new { @class = "form-control form-control-sm" })
+
+                    @Html.ValidationMessageFor(m => m.ApellidoMaterno, null, new { @class = "text-danger" })
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(m => m.Edad)
+
+                    @Html.TextBoxFor(m => m.Edad, new { type = "number", @class = "form-control form-control-sm" });
+
+                    @Html.ValidationMessageFor(m => m.Edad, null, new { @class = "text-danger" })
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(m => m.Peso)
+
+                    @Html.TextBoxFor(m => m.Peso, new { type = "number", step = "0.5", @class = "form-control form-control-sm" })
+
+                    @Html.ValidationMessageFor(m => m.Peso, null, new { @class = "text-danger" })
+                </div>
+
+
+       
+
+                <div class="form-group">
+
+                    <!--Por cuestiones de tiempo se agregó la etiqueta html directamente y no el Html helper-->
+                    <label for="Sexo">Sexo:</label>
+
+
+                    <select class="form-control" id="Sexo" name="Sexo">
+                        <option>Masculino</option>
+                        <option>Femenino</option>
+                        <option>Otro</option>
+                    </select>
+                </div>
+                <div class="form-group">
+
+                    @if (TempData["RegistroPacDoc"] != null)
+                    {
+                        if ((bool)TempData["RegistroPacDoc"])
+                        {
+                            <h5 class="text-success">
+                                La edición del del paciente fue éxitoso.
+                            </h5>
+                        }
+
+                    }
+
+                    @Html.ActionLink("Consultar pacientes", "Index", "Paciente")
+
+                    @if (TempData["ErrorCo"] != null)
+                    {
+                        <h5 class="text-danger">
+                            @TempData["ErrorCo"]
+                        </h5>
+                    }
+
+
+
+                </div>
+
+                <input type="submit" value="Guardar" class="btn btn-info rounded" />
+
+            </div>
+
+        </div>
+    }
+
+
+
+</div>
+
+
+
+
+
+
+

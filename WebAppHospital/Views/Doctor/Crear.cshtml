@@ -1,0 +1,113 @@
+﻿
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@model WebAppHospital.Models.DoctorModel
+
+<div class="container">
+
+    @using (Html.BeginForm("CrearNuevo", "Doctor", FormMethod.Post))
+    {
+        @Html.AntiForgeryToken()
+        <div class="row formLogin">
+            <h2>Registro - Doctor</h2>
+
+            <div class="col">
+
+
+                <div class="form-group">
+
+                    @Html.LabelFor(m => m.Nombre);
+
+                    @Html.TextBoxFor(m => m.Nombre, new { @class = "form-control form-control-sm" })
+
+                    @Html.ValidationMessageFor(m => m.Nombre, null, new { @class = "text-danger" })
+
+                </div>
+
+
+
+                <div class="form-group">
+                    @Html.LabelFor(m => m.ApellidoPaterno);
+
+                    @Html.TextBoxFor(m => m.ApellidoPaterno, new { @class = "form-control form-control-sm" })
+
+                    @Html.ValidationMessageFor(m => m.ApellidoPaterno, null, new { @class = "text-danger" })
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(m => m.ApellidoMaterno);
+
+                    @Html.TextBoxFor(m => m.ApellidoMaterno, new { @class = "form-control form-control-sm" })
+
+                    @Html.ValidationMessageFor(m => m.ApellidoMaterno, null, new { @class = "text-danger" })
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(m => m.Departamento);
+
+                    @Html.TextBoxFor(m => m.Departamento, new { @class = "form-control form-control-sm" })
+
+                    @Html.ValidationMessageFor(m => m.Departamento, null, new { @class = "text-danger" })
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(m => m.Especialidad);
+
+                    @Html.TextBoxFor(m => m.Especialidad, new { @class = "form-control form-control-sm" })
+
+                    @Html.ValidationMessageFor(m => m.Especialidad, null, new { @class = "text-danger" })
+                </div>
+
+
+                <div class="form-group">
+                    @Html.LabelFor(m => m.NumCedula);
+
+                    @Html.TextBoxFor(m => m.NumCedula, new { @class = "form-control form-control-sm" })
+
+                    @Html.ValidationMessageFor(m => m.NumCedula, null, new { @class = "text-danger" })
+                </div>
+                <div class="form-group">
+
+                    @if (TempData["RegistroExDoc"] != null)
+                    {
+                        if ((bool)TempData["RegistroExDoc"])
+                        {
+                            <h5 class="text-success">
+                                El registro del nevo doctor fu éxitoso.
+                            </h5>
+                        }
+
+                    }
+
+                    @Html.ActionLink("Consultar doctores", "Index", "Doctor")
+
+                    @if (TempData["ErrorCo"] != null)
+                    {
+                        <h5 class="text-danger">
+                            @TempData["ErrorCo"]
+                        </h5>
+                    }
+
+
+
+                </div>
+
+                <input type="submit" value="Registrar" class="btn btn-info rounded" />
+
+            </div>
+
+        </div>
+    }
+
+
+
+</div>
+
+
+
+
+
+
