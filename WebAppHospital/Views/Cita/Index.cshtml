@@ -35,8 +35,7 @@
                 <td>@cita.NombreDoctor</td>
                 <td>@cita.FechaCita</td>
                 <td>
-                    @Html.ActionLink("Editar", "Editar", "Cita", new { idCita = cita.Id }, null)
-                    |
+                    
 
                     <a onclick="eliminarCita(this)" href="#@cita.Id"> Borrar</a>|
                     @Html.ActionLink("Detalle", "DetalleCita", "Cita", new { idCita = cita.Id }, null)
